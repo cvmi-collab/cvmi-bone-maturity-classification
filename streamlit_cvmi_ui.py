@@ -1,20 +1,32 @@
+```python
+import os
 import streamlit as st
 import torch
 import torch.nn as nn
 from torchvision import models, transforms
 from PIL import Image
-import io
 
 # --------------------------
-# CONFIG
+# PAGE CONFIG (MUST BE FIRST)
 # --------------------------
-MODEL_PATH = "best_resnet18_model_new.pth"
+st.set_page_config(
+    page_title="CVMI Bone Maturity Stage Classification",
+    layout="wide"
+)
+
+# --------------------------
+# PATH SETUP (STREAMLIT SAFE)
+# --------------------------
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+MODEL_PATH = os.path.join(BASE_DIR, "best_resnet18_model_new.pth")
+
+COLLEGE_LOGO = os.path.join(BASE_DIR, "assets", "college_logo.png")
+DEPT_LOGO = os.path.join(BASE_DIR, "assets", "department_logo.png")
+REFERENCE_IMAGE = os.path.join(BASE_DIR, "assets", "cvm_reference.png")
+
 CLASS_NAMES = ["STAGE 1", "STAGE 2", "STAGE 3", "STAGE 4", "STAGE 5", "STAGE 6"]
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-COLLEGE_LOGO = "assets/college_logo.png"
-DEPT_LOGO = "assets/department_logo.png"
-REFERENCE_IMAGE = "assets/cvm_reference.png"
 
 # --------------------------
 # MODEL LOADING
@@ -38,14 +50,6 @@ def load_model():
     return model, transform
 
 model, transform = load_model()
-
-# --------------------------
-# PAGE CONFIG
-# --------------------------
-st.set_page_config(
-    page_title="CVMI Bone Maturity Stage Classification",
-    layout="wide"
-)
 
 # --------------------------
 # STYLES
@@ -86,21 +90,23 @@ a{
 """, unsafe_allow_html=True)
 
 # --------------------------
-# HEADER (LOGOS + DEPARTMENT)
+# HEADER (LOGOS + DEPT)
 # --------------------------
-h1, h2, h3 = st.columns([1,2,1])
+c1, c2, c3 = st.columns([1, 2, 1])
 
-with h1:
-    st.image(COLLEGE_LOGO, width=110)
+with c1:
+    if os.path.exists(COLLEGE_LOGO):
+        st.image(COLLEGE_LOGO, width=110)
 
-with h2:
+with c2:
     st.markdown(
         "<h3 style='text-align:center;'>Department of Orthodontics & Dentofacial Orthopedics</h3>",
         unsafe_allow_html=True
     )
 
-with h3:
-    st.image(DEPT_LOGO, width=110)
+with c3:
+    if os.path.exists(DEPT_LOGO):
+        st.image(DEPT_LOGO, width=110)
 
 # --------------------------
 # BANNER
@@ -115,7 +121,7 @@ st.markdown("""
 # --------------------------
 # MAIN LAYOUT
 # --------------------------
-left_col, right_col = st.columns([1,1.05])
+left_col, right_col = st.columns([1, 1.05])
 
 # -------- LEFT PANEL --------
 with left_col:
@@ -172,7 +178,6 @@ with right_col:
         predicted_label = st.session_state["last_pred"]
         desc = st.session_state["last_desc"]
 
-    # Stage pills
     cols = st.columns(6)
     if predicted_label:
         active_idx = CLASS_NAMES.index(predicted_label)
@@ -183,14 +188,13 @@ with right_col:
     else:
         st.markdown("### Predicted Stage: --")
 
-    st.markdown(
-        f"**Description:** {desc if desc else 'No description available yet.'}"
-    )
+    st.markdown(f"**Description:** {desc if desc else 'No description available yet.'}")
 
-    st.markdown(
-        f'<a href="{REFERENCE_IMAGE}" target="_blank">Link</a>',
-        unsafe_allow_html=True
-    )
+    if os.path.exists(REFERENCE_IMAGE):
+        st.markdown(
+            "<a href='assets/cvm_reference.png' target='_blank'>Link</a>",
+            unsafe_allow_html=True
+        )
 
     st.markdown(
         "<div style='margin-top:10px;color:#6b7280;font-size:13px;'>"
@@ -214,3 +218,4 @@ st.markdown(
     "</div>",
     unsafe_allow_html=True
 )
+```
