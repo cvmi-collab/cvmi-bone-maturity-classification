@@ -8,9 +8,18 @@ from PIL import Image
 # --------------------------
 # PAGE CONFIG (MUST BE FIRST)
 # --------------------------
-st.set_page_config(
-    page_title="CVMI Bone Maturity Stage Classification",
-    layout="wide"
+st.markdown("""
+<h2 style="margin-bottom:5px;">
+    CVMI Bone Maturity Stage Classification
+</h2>
+
+<p style="font-size:16px; margin-top:0;">
+    <strong>CERVICAL VERTEBRAL METHOD (CVM) STAGING</strong><br>
+    <strong>CERVICAL STAGE (CS):</strong> 1, 2, 3, 4, 5, 6
+</p>
+<hr>
+""", unsafe_allow_html=True)
+
 )
 
 # --------------------------
