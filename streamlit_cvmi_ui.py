@@ -22,7 +22,11 @@ MODEL_PATH = os.path.join(BASE_DIR, "best_resnet18_model_new.pth")
 
 COLLEGE_LOGO = os.path.join(BASE_DIR, "assets", "college_logo.png.png")
 DEPT_LOGO = os.path.join(BASE_DIR, "assets", "department_logo.png.png")
-REFERENCE_IMAGE = os.path.join(BASE_DIR, "assets", "cvm_reference.png")
+
+# ✅ GOOGLE DRIVE REFERENCE IMAGE
+REFERENCE_DRIVE_URL = (
+    "https://drive.google.com/file/d/1XKepC-4sSnDeAralx6Ez6Z25y-bOhTKY/view?usp=sharing"
+)
 
 CLASS_NAMES = [
     "STAGE 1", "STAGE 2", "STAGE 3",
@@ -51,7 +55,6 @@ def load_model():
         ),
     ])
     return model, transform
-
 
 model, transform = load_model()
 
@@ -95,7 +98,7 @@ st.markdown(
 c1, c2, c3 = st.columns([1, 2, 1])
 
 # --------------------------
-# TITLE / TEXT (NO BANNER)
+# TITLE / TEXT
 # --------------------------
 st.markdown(
     """
@@ -146,12 +149,10 @@ with left_col:
         st.image(image, caption="Uploaded X-Ray", use_column_width=True)
     else:
         st.info("Upload an X-ray image to get started.")
-
-        if os.path.exists(REFERENCE_IMAGE):
-            st.markdown(
-                "<a href='assets/cvm_reference.png' target='_blank'>Link</a>",
-                unsafe_allow_html=True
-            )
+        st.markdown(
+            f"<a href='{REFERENCE_DRIVE_URL}' target='_blank'>View CVMI Reference Image</a>",
+            unsafe_allow_html=True
+        )
 
     st.markdown("</div>", unsafe_allow_html=True)
 
