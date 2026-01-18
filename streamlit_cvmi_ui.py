@@ -13,20 +13,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# --------------------------
-# TITLE / TEXT (NO BANNER)
-# --------------------------
-st.markdown("""
-<h2 style="margin-bottom:6px;">
-    CVMI Bone Maturity Stage Classification
-</h2>
 
-<p style="font-size:16px; margin-top:0;">
-    <strong>CERVICAL VERTEBRAL METHOD (CVM) STAGING</strong><br>
-    <strong>CERVICAL STAGE (CS):</strong> 1, 2, 3, 4, 5, 6
-</p>
-<hr>
-""", unsafe_allow_html=True)
 
 # --------------------------
 # PATH SETUP
@@ -100,6 +87,20 @@ a{
 # HEADER (LOGOS + DEPARTMENT)
 # --------------------------
 c1, c2, c3 = st.columns([1, 2, 1])
+# --------------------------
+# TITLE / TEXT (NO BANNER)
+# --------------------------
+st.markdown("""
+<h2 style="margin-bottom:6px;">
+    CVMI Bone Maturity Stage Classification
+</h2>
+
+<p style="font-size:16px; margin-top:0;">
+    <strong>CERVICAL VERTEBRAL METHOD (CVM) STAGING</strong><br>
+    <strong>CERVICAL STAGE (CS):</strong> 1, 2, 3, 4, 5, 6
+</p>
+<hr>
+""", unsafe_allow_html=True)
 
 with c1:
     if os.path.exists(COLLEGE_LOGO):
