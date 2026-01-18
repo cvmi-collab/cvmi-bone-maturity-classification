@@ -6,10 +6,18 @@ from torchvision import models, transforms
 from PIL import Image
 
 # --------------------------
-# PAGE CONFIG (MUST BE FIRST)
+# PAGE CONFIG
+# --------------------------
+st.set_page_config(
+    page_title="CVMI Bone Maturity Stage Classification",
+    layout="wide"
+)
+
+# --------------------------
+# TITLE / TEXT (NO BANNER)
 # --------------------------
 st.markdown("""
-<h2 style="margin-bottom:5px;">
+<h2 style="margin-bottom:6px;">
     CVMI Bone Maturity Stage Classification
 </h2>
 
@@ -19,6 +27,7 @@ st.markdown("""
 </p>
 <hr>
 """, unsafe_allow_html=True)
+
 
 )
 
