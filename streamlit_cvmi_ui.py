@@ -103,7 +103,7 @@ c1, c2, c3 = st.columns([1, 2, 1])
 st.markdown(
     """
     <h2 style="margin-bottom:6px;">
-        CVMI Bone Maturity Stage Classification
+        Bone Maturity Stage Classification
     </h2>
 
     <p style="font-size:16px; margin-top:0;">
