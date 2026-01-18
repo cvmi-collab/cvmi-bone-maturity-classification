@@ -121,11 +121,17 @@ with c1:
 
 with c2:
     st.markdown(
-        "<h3 style='text-align:center;'>Inderprastha Dental College & Hospital</h3>",
-
-        "<h3 style='text-align:center;'>Department of Orthodontics & Dentofacial Orthopedics</h3>",
+        """
+        <h3 style="text-align:center; margin-bottom:4px;">
+            Inderprastha Dental College & Hospital
+        </h3>
+        <h3 style="text-align:center; margin-top:0;">
+            Department of Orthodontics & Dentofacial Orthopedics
+        </h3>
+        """,
         unsafe_allow_html=True
     )
+
 
 with c3:
     if os.path.exists(DEPT_LOGO):
