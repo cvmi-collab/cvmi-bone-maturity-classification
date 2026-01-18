@@ -97,23 +97,20 @@ st.markdown(
 # --------------------------
 c1, c2, c3 = st.columns([1, 2, 1])
 
-# --------------------------
-# TITLE / TEXT
-# --------------------------
 st.markdown(
     """
     <h2 style="margin-bottom:6px;">
-        Bone Maturity Stage Classification
+        CERVICAL VERTEBRAL METHOD (CVM) STAGING
     </h2>
 
-    <p style="font-size:16px; margin-top:0;">
-        <strong>CERVICAL VERTEBRAL METHOD (CVM) STAGING</strong><br>
-        <strong>CERVICAL STAGE (CS):</strong> 1, 2, 3, 4, 5, 6
-    </p>
+    <h2 style="margin-top:0; font-weight:500;">
+        CERVICAL STAGE (CS): 1, 2, 3, 4, 5, 6
+    </h2>
     <hr>
     """,
     unsafe_allow_html=True
 )
+
 
 with c1:
     if os.path.exists(COLLEGE_LOGO):
