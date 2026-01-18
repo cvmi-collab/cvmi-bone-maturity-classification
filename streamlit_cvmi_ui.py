@@ -13,8 +13,6 @@ st.set_page_config(
     layout="wide"
 )
 
-
-
 # --------------------------
 # PATH SETUP
 # --------------------------
@@ -22,9 +20,9 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 MODEL_PATH = os.path.join(BASE_DIR, "best_resnet18_model_new.pth")
 
-COLLEGE_LOGO = os.path.join(BASE_DIR, "assets", "college_logo.png.png")
-DEPT_LOGO = os.path.join(BASE_DIR, "assets", "department_logo.png.png")
-REFERENCE_IMAGE = os.path.join(BASE_DIR, "assets", "cvm_reference.png.png")
+COLLEGE_LOGO = os.path.join(BASE_DIR, "assets", "college_logo.png")
+DEPT_LOGO = os.path.join(BASE_DIR, "assets", "department_logo.png")
+REFERENCE_IMAGE = os.path.join(BASE_DIR, "assets", "cvm_reference.png")
 
 CLASS_NAMES = ["STAGE 1", "STAGE 2", "STAGE 3", "STAGE 4", "STAGE 5", "STAGE 6"]
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -84,20 +82,15 @@ a{
 """, unsafe_allow_html=True)
 
 # --------------------------
-# HEADER (LOGOS + DEPARTMENT)
+# HEADER
 # --------------------------
 c1, c2, c3 = st.columns([1, 2, 1])
-# --------------------------
-# TITLE / TEXT (NO BANNER)
-# --------------------------
-st.markdown("""
-<h2 style="margin-bottom:6px;">
-    CVMI Bone Maturity Stage Classification
-</h2>
 
-<p style="font-size:16px; margin-top:0;">
-    <strong>CERVICAL VERTEBRAL METHOD (CVM) STAGING</strong><br>
-    <strong>CERVICAL STAGE (CS):</strong> 1, 2, 3, 4, 5, 6
+st.markdown("""
+<h2>CVMI Bone Maturity Stage Classification</h2>
+<p>
+<b>CERVICAL VERTEBRAL METHOD (CVM) STAGING</b><br>
+<b>CERVICAL STAGE (CS):</b> 1, 2, 3, 4, 5, 6
 </p>
 <hr>
 """, unsafe_allow_html=True)
@@ -136,12 +129,12 @@ with left_col:
         st.image(image, caption="Uploaded X-Ray", use_column_width=True)
     else:
         st.info("Upload an X-ray image to get started.")
-        if os.path.exists(REFERENCE_IMAGE):
-        st.markdown(
-            "<a href='assets/cvm_reference.png.png' target='_blank'>Link</a>",
-            unsafe_allow_html=True
-        )
 
+        if os.path.exists(REFERENCE_IMAGE):
+            st.markdown(
+                "<a href='assets/cvm_reference.png' target='_blank'>View CVM Reference Image</a>",
+                unsafe_allow_html=True
+            )
 
     st.markdown("</div>", unsafe_allow_html=True)
 
@@ -194,7 +187,6 @@ with right_col:
 
     st.markdown(f"**Description:** {desc if desc else 'No description available yet.'}")
 
-    
     st.markdown(
         "<div style='margin-top:10px;color:#6b7280;font-size:13px;'>"
         "Total 1000 digit cephalogram were used to train the AI Model"
