@@ -22,7 +22,7 @@ MODEL_PATH = os.path.join(BASE_DIR, "best_resnet18_model_new.pth")
 
 COLLEGE_LOGO = os.path.join(BASE_DIR, "assets", "college_logo.png.png")
 DEPT_LOGO = os.path.join(BASE_DIR, "assets", "department_logo.png.png")
-REFERENCE_IMAGE = os.path.join(BASE_DIR, "assets", "cvm_reference.png.png")
+REFERENCE_IMAGE = os.path.join(BASE_DIR, "assets", "cvm_reference.png")
 
 CLASS_NAMES = [
     "STAGE 1", "STAGE 2", "STAGE 3",
