@@ -20,11 +20,15 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 MODEL_PATH = os.path.join(BASE_DIR, "best_resnet18_model_new.pth")
 
-COLLEGE_LOGO = os.path.join(BASE_DIR, "assets", "college_logo.png")
-DEPT_LOGO = os.path.join(BASE_DIR, "assets", "department_logo.png")
-REFERENCE_IMAGE = os.path.join(BASE_DIR, "assets", "cvm_reference.png")
+COLLEGE_LOGO = os.path.join(BASE_DIR, "assets", "college_logo.png.png")
+DEPT_LOGO = os.path.join(BASE_DIR, "assets", "department_logo.png.png")
+REFERENCE_IMAGE = os.path.join(BASE_DIR, "assets", "cvm_reference.png.png")
 
-CLASS_NAMES = ["STAGE 1", "STAGE 2", "STAGE 3", "STAGE 4", "STAGE 5", "STAGE 6"]
+CLASS_NAMES = [
+    "STAGE 1", "STAGE 2", "STAGE 3",
+    "STAGE 4", "STAGE 5", "STAGE 6"
+]
+
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # --------------------------
@@ -48,52 +52,65 @@ def load_model():
     ])
     return model, transform
 
+
 model, transform = load_model()
 
 # --------------------------
 # STYLES
 # --------------------------
-st.markdown("""
-<style>
-.card{
-    background:white;
-    border-radius:12px;
-    padding:18px;
-    box-shadow:0 4px 20px rgba(0,0,0,0.08);
-}
-.stage-pill{
-    display:inline-block;
-    padding:8px 14px;
-    border-radius:8px;
-    background:#e6f7f6;
-    margin-right:6px;
-}
-.stage-pill.active{
-    background:#0f6674;
-    color:white;
-    font-weight:700;
-}
-a{
-    color:#2563eb;
-    text-decoration:none;
-    font-weight:600;
-}
-</style>
-""", unsafe_allow_html=True)
+st.markdown(
+    """
+    <style>
+    .card{
+        background:white;
+        border-radius:12px;
+        padding:18px;
+        box-shadow:0 4px 20px rgba(0,0,0,0.08);
+    }
+    .stage-pill{
+        display:inline-block;
+        padding:8px 14px;
+        border-radius:8px;
+        background:#e6f7f6;
+        margin-right:6px;
+    }
+    .stage-pill.active{
+        background:#0f6674;
+        color:white;
+        font-weight:700;
+    }
+    a{
+        color:#2563eb;
+        text-decoration:none;
+        font-weight:600;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 # --------------------------
-# HEADER
+# HEADER (LOGOS + DEPARTMENT)
 # --------------------------
 c1, c2, c3 = st.columns([1, 2, 1])
 
-st.markdown("""
-<h2>CVMI Bone Maturity Stage Classification</h2>
-<p>
-<b>CERVICAL VERTEBRAL METHOD (CVM) STAGING</b><br>
-<b>CERVICAL STAGE (CS):</b> 1, 2, 3, 4, 5, 6
-</p>
-<hr>
-""", unsafe_allow_html=True)
+# --------------------------
+# TITLE / TEXT (NO BANNER)
+# --------------------------
+st.markdown(
+    """
+    <h2 style="margin-bottom:6px;">
+        CVMI Bone Maturity Stage Classification
+    </h2>
+
+    <p style="font-size:16px; margin-top:0;">
+        <strong>CERVICAL VERTEBRAL METHOD (CVM) STAGING</strong><br>
+        <strong>CERVICAL STAGE (CS):</strong> 1, 2, 3, 4, 5, 6
+    </p>
+    <hr>
+    """,
+    unsafe_allow_html=True
+)
 
 with c1:
     if os.path.exists(COLLEGE_LOGO):
@@ -132,7 +149,7 @@ with left_col:
 
         if os.path.exists(REFERENCE_IMAGE):
             st.markdown(
-                "<a href='assets/cvm_reference.png' target='_blank'>View CVM Reference Image</a>",
+                "<a href='assets/cvm_reference.png.png' target='_blank'>Link</a>",
                 unsafe_allow_html=True
             )
 
@@ -151,6 +168,7 @@ with right_col:
             st.warning("Please upload an X-ray image first.")
         else:
             img_tensor = transform(image).unsqueeze(0).to(DEVICE)
+
             with torch.no_grad():
                 outputs = model(img_tensor)
                 pred_idx = int(torch.argmax(outputs))
@@ -176,16 +194,22 @@ with right_col:
         desc = st.session_state["last_desc"]
 
     cols = st.columns(6)
+
     if predicted_label:
         active_idx = CLASS_NAMES.index(predicted_label)
         for i in range(6):
             cls = "stage-pill active" if i == active_idx else "stage-pill"
-            cols[i].markdown(f"<div class='{cls}'>{i+1}</div>", unsafe_allow_html=True)
+            cols[i].markdown(
+                f"<div class='{cls}'>{i + 1}</div>",
+                unsafe_allow_html=True
+            )
         st.markdown(f"### Predicted Stage: **{predicted_label}**")
     else:
         st.markdown("### Predicted Stage: --")
 
-    st.markdown(f"**Description:** {desc if desc else 'No description available yet.'}")
+    st.markdown(
+        f"**Description:** {desc if desc else 'No description available yet.'}"
+    )
 
     st.markdown(
         "<div style='margin-top:10px;color:#6b7280;font-size:13px;'>"
