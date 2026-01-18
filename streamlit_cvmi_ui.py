@@ -9,7 +9,7 @@ from PIL import Image
 # PAGE CONFIG
 # --------------------------
 st.set_page_config(
-    page_title="CVMI Bone Maturity Stage Classification",
+    page_title="",
     layout="wide"
 )
 
