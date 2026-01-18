@@ -155,7 +155,7 @@ with left_col:
     else:
         st.info("Upload an X-ray image to get started.")
         st.markdown(
-            f"<a href='{REFERENCE_DRIVE_URL}' target='_blank'>View CVMI Reference Image</a>",
+            f"<a href='{REFERENCE_DRIVE_URL}' target='_blank'>Link</a>",
             unsafe_allow_html=True
         )
 
