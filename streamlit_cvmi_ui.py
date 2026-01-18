@@ -149,7 +149,7 @@ with left_col:
 
         if os.path.exists(REFERENCE_IMAGE):
             st.markdown(
-                "<a href='assets/cvm_reference.png.png' target='_blank'>Link</a>",
+                "<a href='assets/cvm_reference.png' target='_blank'>Link</a>",
                 unsafe_allow_html=True
             )
 
