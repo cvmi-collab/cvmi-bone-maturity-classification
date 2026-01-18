@@ -28,19 +28,16 @@ st.markdown("""
 <hr>
 """, unsafe_allow_html=True)
 
-
-)
-
 # --------------------------
-# PATH SETUP (STREAMLIT SAFE)
+# PATH SETUP
 # --------------------------
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 MODEL_PATH = os.path.join(BASE_DIR, "best_resnet18_model_new.pth")
 
-COLLEGE_LOGO = os.path.join(BASE_DIR, "assets", "college_logo.png")
-DEPT_LOGO = os.path.join(BASE_DIR, "assets", "department_logo.png")
-REFERENCE_IMAGE = os.path.join(BASE_DIR, "assets", "cvm_reference.png")
+COLLEGE_LOGO = os.path.join(BASE_DIR, "assets", "college_logo.png.png")
+DEPT_LOGO = os.path.join(BASE_DIR, "assets", "department_logo.png.png")
+REFERENCE_IMAGE = os.path.join(BASE_DIR, "assets", "cvm_reference.png.png")
 
 CLASS_NAMES = ["STAGE 1", "STAGE 2", "STAGE 3", "STAGE 4", "STAGE 5", "STAGE 6"]
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -73,13 +70,6 @@ model, transform = load_model()
 # --------------------------
 st.markdown("""
 <style>
-.banner{
-    background: linear-gradient(90deg,#0f6674,#2fa3a0);
-    color:white;
-    padding:40px 30px;
-    border-radius:10px;
-    margin-bottom:20px;
-}
 .card{
     background:white;
     border-radius:12px;
@@ -107,7 +97,7 @@ a{
 """, unsafe_allow_html=True)
 
 # --------------------------
-# HEADER (LOGOS + DEPT)
+# HEADER (LOGOS + DEPARTMENT)
 # --------------------------
 c1, c2, c3 = st.columns([1, 2, 1])
 
@@ -124,16 +114,6 @@ with c2:
 with c3:
     if os.path.exists(DEPT_LOGO):
         st.image(DEPT_LOGO, width=110)
-
-# --------------------------
-# BANNER
-# --------------------------
-st.markdown("""
-<div class="banner">
-    <h1>CVMI Bone Maturity Stage Classification</h1>
-    <p>Automated X-ray analysis for precise growth stage prediction (Stages 1–6)</p>
-</div>
-""", unsafe_allow_html=True)
 
 # --------------------------
 # MAIN LAYOUT
@@ -209,7 +189,7 @@ with right_col:
 
     if os.path.exists(REFERENCE_IMAGE):
         st.markdown(
-            "<a href='assets/cvm_reference.png' target='_blank'>Link</a>",
+            "<a href='assets/cvm_reference.png.png' target='_blank'>Link</a>",
             unsafe_allow_html=True
         )
 
