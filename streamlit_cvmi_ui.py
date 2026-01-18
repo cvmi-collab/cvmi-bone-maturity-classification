@@ -136,6 +136,12 @@ with left_col:
         st.image(image, caption="Uploaded X-Ray", use_column_width=True)
     else:
         st.info("Upload an X-ray image to get started.")
+        if os.path.exists(REFERENCE_IMAGE):
+        st.markdown(
+            "<a href='assets/cvm_reference.png.png' target='_blank'>Link</a>",
+            unsafe_allow_html=True
+        )
+
 
     st.markdown("</div>", unsafe_allow_html=True)
 
@@ -188,12 +194,7 @@ with right_col:
 
     st.markdown(f"**Description:** {desc if desc else 'No description available yet.'}")
 
-    if os.path.exists(REFERENCE_IMAGE):
-        st.markdown(
-            "<a href='assets/cvm_reference.png.png' target='_blank'>Link</a>",
-            unsafe_allow_html=True
-        )
-
+    
     st.markdown(
         "<div style='margin-top:10px;color:#6b7280;font-size:13px;'>"
         "Total 1000 digit cephalogram were used to train the AI Model"
