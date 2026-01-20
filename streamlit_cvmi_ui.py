@@ -217,11 +217,11 @@ with right_col:
         f"**Description:** {desc if desc else 'No description available yet.'}"
     )
 
-    st.markdown(
-        "<div style='margin-top:10px;color:#6b7280;font-size:13px;'>"
-        "Total 1000 digit cephalogram were used to train the AI Model"
-        "</div>",
-        unsafe_allow_html=True
+    # st.markdown(
+    #     "<div style='margin-top:10px;color:#6b7280;font-size:13px;'>"
+    #     "Total 1000 digit cephalogram were used to train the AI Model"
+    #     "</div>",
+    #     unsafe_allow_html=True
     )
 
     if st.button("New Analysis"):
