@@ -25,7 +25,7 @@ DEPT_LOGO = os.path.join(BASE_DIR, "assets", "department_logo.png.png")
 
 # ✅ GOOGLE DRIVE REFERENCE IMAGE
 REFERENCE_DRIVE_URL = (
-    "https://drive.google.com/file/d/1XKepC-4sSnDeAralx6Ez6Z25y-bOhTKY/view?usp=sharing"
+    "https://drive.google.com/file/d/1dHtdjm4nbt-aGloDlUOF4PNVdeMStypD/view?usp=sharing"
 )
 
 CLASS_NAMES = [
