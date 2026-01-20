@@ -222,7 +222,7 @@ with right_col:
     #     "Total 1000 digit cephalogram were used to train the AI Model"
     #     "</div>",
     #     unsafe_allow_html=True
-    )
+    # )
 
     if st.button("New Analysis"):
         st.session_state.clear()
